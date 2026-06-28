@@ -77,20 +77,84 @@ int main()
 // Function Definitions
 void AddStudents(struct Student_Data s[], int *count)
 {
-    printf("Coming Soon...\n");
+    printf("\nEnter Student ID: ");
+    scanf("%d", &s[*count].Student_ID);
+
+    printf("Enter Name: ");
+    scanf(" %[^\n]", s[*count].Name);
+
+    printf("Enter Gender (M/F): ");
+    scanf(" %c", &s[*count].Gender);
+
+    printf("Enter Semester: ");
+    scanf("%d", &s[*count].semester);
+
+    printf("Enter CGPA: ");
+    scanf("%f", &s[*count].CGPA);
+
+    printf("Enter Contact Number: ");
+    scanf("%s", s[*count].Contact_No);
+
+    (*count)++;
+
+    printf("\nStudent Added Successfully!\n\n");
 }
 
 void RemoveStudents(struct Student_Data s[], int *count)
 {
-    printf("Coming Soon...\n");
-}
+    int id, i, j;
 
-void UpdateStudentData(struct Student_Data s[], int *count)
-{
-    printf("Coming Soon...\n");
+    if (*count == 0)
+    {
+        printf("\nNo student records available.\n\n");
+        return;
+    }
+
+    printf("\nEnter Student ID to Remove: ");
+    scanf("%d", &id);
+
+    for (i = 0; i < *count; i++)
+    {
+        if (s[i].Student_ID == id)
+        {
+            for (j = i; j < *count - 1; j++)
+            {
+                s[j] = s[j + 1];
+            }
+
+            (*count)--;
+
+            printf("\nStudent Removed Successfully!\n\n");
+            return;
+        }
+    }
+
+    printf("\nStudent ID Not Found!\n\n");
 }
 
 void DisplayStudent(struct Student_Data s[], int count)
 {
-    printf("Coming Soon...\n");
+    int i;
+
+    if (count == 0)
+    {
+        printf("\nNo student records available.\n\n");
+        return;
+    }
+
+    printf("\n================ Student Records ================\n");
+
+    for (i = 0; i < count; i++)
+    {
+        printf("\nStudent %d\n", i + 1);
+        printf("---------------------------------\n");
+        printf("Student ID : %d\n", s[i].Student_ID);
+        printf("Name       : %s\n", s[i].Name);
+        printf("Gender     : %c\n", s[i].Gender);
+        printf("Semester   : %d\n", s[i].semester);
+        printf("CGPA       : %.2f\n", s[i].CGPA);
+        printf("Contact No : %s\n", s[i].Contact_No);
+    }
+
+    printf("\n===============================================\n\n");
 }
