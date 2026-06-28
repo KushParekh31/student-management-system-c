@@ -132,6 +132,46 @@ void RemoveStudents(struct Student_Data s[], int *count)
     printf("\nStudent ID Not Found!\n\n");
 }
 
+void UpdateStudentData(struct Student_Data s[], int *count)
+{
+    int id, i;
+
+    if (*count == 0)
+    {
+        printf("\nNo student records available.\n\n");
+        return;
+    }
+
+    printf("\nEnter Student ID to Update: ");
+    scanf("%d", &id);
+
+    for (i = 0; i < *count; i++)
+    {
+        if (s[i].Student_ID == id)
+        {
+            printf("Enter New Name: ");
+            scanf(" %[^\n]", s[i].Name);
+
+            printf("Enter New Gender (M/F): ");
+            scanf(" %c", &s[i].Gender);
+
+            printf("Enter New Semester: ");
+            scanf("%d", &s[i].semester);
+
+            printf("Enter New CGPA: ");
+            scanf("%f", &s[i].CGPA);
+
+            printf("Enter New Contact Number: ");
+            scanf("%s", s[i].Contact_No);
+
+            printf("\nStudent Updated Successfully!\n\n");
+            return;
+        }
+    }
+
+    printf("\nStudent ID Not Found!\n\n");
+}
+
 void DisplayStudent(struct Student_Data s[], int count)
 {
     int i;
